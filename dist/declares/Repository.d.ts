@@ -17,6 +17,7 @@ export declare class Repository<T> {
     create(id: string, data: T): Promise<DocumentReference<T>>
     update(id: string, data: Partial<T>): Promise<DocumentReference<T>>
     add(data: Partial<T>): Promise<DocumentReference<T>>
+    delete(id: string): Promise<void>
 
     one(id: string): Promise<T | null>
     list(getQuery: (collectionRef: CollectionReference<T>) => Query<T>): Promise<T[]>

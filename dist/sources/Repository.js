@@ -36,6 +36,11 @@ class Repository {
     return ref
   }
 
+  async delete (id) {
+    const ref = this.ref(id)
+    await ref.delete()
+  }
+
   async one (id) {
     const result = await this.ref(id).get()
     return DocumentAccessor.one(result)

@@ -29,6 +29,11 @@ class Transaction {
     return ref
   }
 
+  async delete (id) {
+    const ref = this.ref(id)
+    await this.tx.delete(ref)
+  }
+
   async add (data) {
     const ref = this.ref()
     await this.tx.create(ref, data)
