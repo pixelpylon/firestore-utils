@@ -1,5 +1,5 @@
 const DocumentAccessor = require('./DocumentAccessor')
-const Transaction = require('./Transaction')
+const {Transaction} = require('./Transaction')
 
 class Repository {
   constructor (db, collectionName) {
@@ -63,4 +63,4 @@ class Repository {
   }
 }
 
-module.exports = Repository
+module.exports = {Repository}

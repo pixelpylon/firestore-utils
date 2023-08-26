@@ -1,27 +1,21 @@
-import {
-    Firestore,
-    Transaction as FTransaction,
-    CollectionReference,
-    DocumentReference,
-    Query
-} from '@google-cloud/firestore'
+import {firestore} from 'firebase-admin'
 import {Transaction} from './Transaction'
 
 export declare class Repository<T> {
-    protected db: Firestore
+    protected db: firestore.Firestore
     protected collectionName: string
 
-    constructor (db: Firestore, collectionName: string)
-    ref (id?: string): DocumentReference<T>
-    set(id: string, data: T): Promise<DocumentReference<T>>
-    create(id: string, data: T): Promise<DocumentReference<T>>
-    update(id: string, data: Partial<T>): Promise<DocumentReference<T>>
-    add(data: Partial<T>): Promise<DocumentReference<T>>
+    constructor (db: firestore.Firestore, collectionName: string)
+    ref (id?: string): firestore.DocumentReference<T>
+    set(id: string, data: T): Promise<firestore.DocumentReference<T>>
+    create(id: string, data: T): Promise<firestore.DocumentReference<T>>
+    update(id: string, data: Partial<T>): Promise<firestore.DocumentReference<T>>
+    add(data: Partial<T>): Promise<firestore.DocumentReference<T>>
     delete(id: string): Promise<void>
 
     one(id: string): Promise<T | null>
-    list(getQuery: (collectionRef: CollectionReference<T>) => Query<T>): Promise<T[]>
-    first(getQuery: (collectionRef: CollectionReference<T>) => Query<T>): Promise<T | null>
+    list(getQuery: (collectionRef: firestore.CollectionReference<T>) => firestore.Query<T>): Promise<T[]>
+    first(getQuery: (collectionRef: firestore.CollectionReference<T>) => firestore.Query<T>): Promise<T | null>
 
-    tx(tx: FTransaction): Transaction<T>
+    tx(tx: firestore.Transaction): Transaction<T>
 }

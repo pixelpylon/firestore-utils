@@ -43,4 +43,4 @@ class StatusManager {
 
 StatusManager.PROCESSING_STATUSES = PROCESSING_STATUSES
 
-module.exports = StatusManager
+module.exports = {StatusManager}
