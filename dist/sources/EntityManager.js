@@ -4,19 +4,28 @@ const {Repository} = require('./Repository')
 const {Transaction} = require('./Transaction')
 const {difference} = require('lodash/difference')
 const {intersection} = require('lodash/intersection')
-const {isEmpty} = require('lodash/isEmpty')
 
 // filters: a b c, ordering: c -> filters: c a b, ordering: c
 // filters: a b c, ordering: c b -> filters: c b a, ordering c b
 // filters: a b c, ordering: d -> filters: a b c, ordering a b c d
 // filters: a b c, ordering: c d -> filters: c a b, ordering c a b d
-const autoFixFiltersAndOrdering = (filters, ordering) => {
-  if (isEmpty(filters) || isEmpty(ordering)) {
-    return {filters, ordering}
-  }
+const autoFixFiltersAndOrdering = (filters = [], ordering = []) => {
+  const normalizedOrdering = ordering.map((item) => {
+    if (typeof item === 'string') {
+      return {
+        field: item,
+        direction: 'asc',
+      }
+    }
+
+    return {
+      field: item.field,
+      direction: item.direction || 'asc',
+    }
+  })
 
   const filterFields = filters.map((item) => item.field)
-  const orderingFields = ordering.map((item) => item.field)
+  const orderingFields = normalizedOrdering.map((item) => item.field)
 
   const filterFieldsWithoutOrdering = difference(filterFields, orderingFields)
   const filterFieldsWithOrdering = intersection(orderingFields, filterFields)
@@ -29,7 +38,7 @@ const autoFixFiltersAndOrdering = (filters, ordering) => {
   })
 
   const fixedOrdering = supplementedOrderingFields.map((field) => {
-    return ordering.find((item) => item.field === field) || {field, direction: 'asc'}
+    return normalizedOrdering.find((item) => item.field === field) || {field, direction: 'asc'}
   })
 
   return {
@@ -46,16 +55,12 @@ const applyFiltersAndOrdering = (query, filters, ordering) => {
     ordering: fixedOrdering,
   } = autoFixFiltersAndOrdering(filters, ordering)
 
-  if (!isEmpty(fixedFilters)) {
-    for (const {field, filter} of fixedFilters) {
-      mutableQuery = mutableQuery.where(field, '==', filter)
-    }
+  for (const {field, filter} of fixedFilters) {
+    mutableQuery = mutableQuery.where(field, '==', filter)
   }
 
-  if (!isEmpty(fixedOrdering)) {
-    for (const {field, direction} of fixedOrdering) {
-      mutableQuery = mutableQuery.orderBy(field, direction)
-    }
+  for (const {field, direction} of fixedOrdering) {
+    mutableQuery = mutableQuery.orderBy(field, direction)
   }
 
   return mutableQuery
@@ -126,7 +131,7 @@ class EntityTransactionManager {
     })
   }
 
-  first (filters, ordering) {
+  first ({filters, ordering}) {
     return this.transaction.first((collectionRef) => {
       return applyFiltersAndOrdering(collectionRef, filters, ordering)
     })
@@ -181,7 +186,7 @@ class EntityManager {
     return item
   }
 
-  async first (filters, ordering) {
+  async first ({filters, ordering}) {
     return this.repository.first((collectionRef) => {
       return applyFiltersAndOrdering(collectionRef, filters, ordering)
     })

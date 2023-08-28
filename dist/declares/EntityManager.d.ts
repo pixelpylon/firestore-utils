@@ -25,7 +25,7 @@ declare class EntityTransactionManager<Entity> {
 
   list(params: EntityListParams<Entity>): Promise<EntityListResponse<Entity>>
 
-  first(filters: EntityFilters<Entity>, ordering?: EntityOrdering<Entity>): Promise<DbData<Entity> | null>
+  first(params: {filters?: EntityFilters<Entity>, ordering?: EntityOrdering<Entity>}): Promise<DbData<Entity> | null>
 
   remove(id: string): Promise<void>
 }
@@ -44,7 +44,7 @@ export class EntityManager<Entity> {
 
   item(id: string): Promise<DbData<Entity>>
 
-  first(filters: EntityFilters<Entity>, ordering?: EntityOrdering<Entity>): Promise<DbData<Entity>>
+  first(params: {filters?: EntityFilters<Entity>, ordering?: EntityOrdering<Entity>}): Promise<DbData<Entity>>
 
   list(params: EntityListParams<Entity>): Promise<EntityListResponse<Entity>>
 

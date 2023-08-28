@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "back-utils": "https://github.com/pixelpylon/back-utils/tarball/0.0.13",
-    "common-utils": "https://github.com/pixelpylon/common-utils/tarball/0.0.69",
+    "common-utils": "https://github.com/pixelpylon/common-utils/tarball/0.0.70",
     "lodash": "^4.17.21",
     "uuid": "^9.0.0"
   },
