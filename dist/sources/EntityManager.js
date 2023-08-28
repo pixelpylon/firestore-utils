@@ -55,8 +55,8 @@ const applyFiltersAndOrdering = (query, filters, ordering) => {
     ordering: fixedOrdering,
   } = autoFixFiltersAndOrdering(filters, ordering)
 
-  for (const {field, filter} of fixedFilters) {
-    mutableQuery = mutableQuery.where(field, '==', filter)
+  for (const {field, value} of fixedFilters) {
+    mutableQuery = mutableQuery.where(field, '==', value)
   }
 
   for (const {field, direction} of fixedOrdering) {
