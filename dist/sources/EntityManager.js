@@ -2,8 +2,8 @@ const {v4: uuid} = require('uuid')
 const {getLimitAndOffset} = require('back-utils')
 const {Repository} = require('./Repository')
 const {Transaction} = require('./Transaction')
-const {difference} = require('lodash/difference')
-const {intersection} = require('lodash/intersection')
+const difference = require('lodash/difference')
+const intersection = require('lodash/intersection')
 
 // filters: a b c, ordering: c -> filters: c a b, ordering: c
 // filters: a b c, ordering: c b -> filters: c b a, ordering c b
