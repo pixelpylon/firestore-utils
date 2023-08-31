@@ -55,8 +55,17 @@ const applyFiltersAndOrdering = (query, filters, ordering) => {
     ordering: fixedOrdering,
   } = autoFixFiltersAndOrdering(filters, ordering)
 
-  for (const {field, value} of fixedFilters) {
-    mutableQuery = mutableQuery.where(field, '==', value)
+  for (const {field, value: valueOrValueObject} of fixedFilters) {
+    if (typeof valueOrValueObject === 'string' ||
+        typeof valueOrValueObject === 'number' ||
+        typeof valueOrValueObject === 'boolean') {
+      mutableQuery = mutableQuery.where(field, '==', valueOrValueObject)
+    } else if (typeof valueOrValueObject === 'object') {
+      const {value, op} = valueOrValueObject
+      mutableQuery = mutableQuery.where(field, op, value)
+    } else {
+      throw new Error(`Unexpected type of value '${JSON.stringify(valueOrValueObject)}'`)
+    }
   }
 
   for (const {field, direction} of fixedOrdering) {

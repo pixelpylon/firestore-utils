@@ -1,6 +1,6 @@
 {
   "name": "firestore-utils",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Firestore Utils",
   "main": "dist/sources/index.js",
   "typings": "dist/declares/index.d.ts",
@@ -16,8 +16,8 @@
     "firebase-admin": "^11.10.1"
   },
   "dependencies": {
-    "back-utils": "https://github.com/pixelpylon/back-utils/tarball/0.0.13",
-    "common-utils": "https://github.com/pixelpylon/common-utils/tarball/0.0.70",
+    "back-utils": "https://github.com/pixelpylon/back-utils/tarball/0.0.17",
+    "common-utils": "https://github.com/pixelpylon/common-utils/tarball/0.0.72",
     "lodash": "^4.17.21",
     "uuid": "^9.0.0"
   },
