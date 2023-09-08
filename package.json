@@ -1,6 +1,6 @@
 {
   "name": "firestore-utils",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Firestore Utils",
   "main": "dist/sources/index.js",
   "typings": "dist/declares/index.d.ts",

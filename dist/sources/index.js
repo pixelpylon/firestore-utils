@@ -2,7 +2,7 @@ const {Repository} = require('./Repository')
 const {Transaction} = require('./Transaction')
 const DocumentAccessor = require('./DocumentAccessor')
 const {StatusManager} = require('./StatusManager')
-const {EntityManager} = require('./EntityManager')
+const {EntityManager, EntityTransactionManager} = require('./EntityManager')
 
 module.exports = {
   Repository,
@@ -10,4 +10,5 @@ module.exports = {
   DocumentAccessor,
   StatusManager,
   EntityManager,
+  EntityTransactionManager,
 }

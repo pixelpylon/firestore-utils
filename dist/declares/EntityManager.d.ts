@@ -3,7 +3,7 @@ import { firestore } from 'firebase-admin';
 import { Repository } from './Repository';
 import { Transaction } from './Transaction';
 
-declare class EntityTransactionManager<Entity> {
+export class EntityTransactionManager<Entity> {
   public readonly transaction: Transaction<DbData<Entity>>
   public readonly collectionName: string
 
