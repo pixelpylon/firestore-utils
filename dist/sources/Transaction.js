@@ -53,7 +53,8 @@ class Transaction {
 
   async first (getQuery) {
     const query = getQuery(this.collectionRef)
-    const result = await this.tx.get(query)
+    const limitedQuery = query.limit(1)
+    const result = await this.tx.get(limitedQuery)
     return DocumentAccessor.first(result)
   }
 }

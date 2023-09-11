@@ -54,7 +54,8 @@ class Repository {
 
   async first (getQuery) {
     const query = getQuery(this.collectionRef)
-    const result = await query.get()
+    const limitedQuery = query.limit(1)
+    const result = await limitedQuery.get()
     return DocumentAccessor.first(result)
   }
 
