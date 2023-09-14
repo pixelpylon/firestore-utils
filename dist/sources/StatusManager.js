@@ -1,4 +1,4 @@
-const {getStatusObject} = require('back-utils')
+const {getStatusObject} = require('@exp1/back-utils')
 const DocumentAccessor = require('./DocumentAccessor')
 
 const PROCESSING_STATUSES = {

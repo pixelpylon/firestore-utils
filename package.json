@@ -1,11 +1,11 @@
 {
-  "name": "firestore-utils",
+  "name": "@exp1/firestore-utils",
   "version": "0.0.6",
   "description": "Firestore Utils",
   "main": "dist/sources/index.js",
   "typings": "dist/declares/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "artifactregistry-login": "npx google-artifactregistry-auth"
   },
   "engines": {
     "node": ">=12"
@@ -16,8 +16,8 @@
     "firebase-admin": "^11.10.1"
   },
   "dependencies": {
-    "back-utils": "https://github.com/pixelpylon/back-utils/tarball/0.0.17",
-    "common-utils": "https://github.com/pixelpylon/common-utils/tarball/0.0.72",
+    "@exp1/back-utils": "^0.0.19",
+    "@exp1/common-utils": "^0.0.73",
     "lodash": "^4.17.21",
     "uuid": "^9.0.0"
   },

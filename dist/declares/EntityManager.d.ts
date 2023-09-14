@@ -1,4 +1,4 @@
-import {DbData, EntityFilters, EntityListParams, EntityListResponse, EntityOrdering} from 'common-utils'
+import {DbData, EntityFilters, EntityListParams, EntityListResponse, EntityOrdering} from '@exp1/common-utils'
 import { firestore } from 'firebase-admin';
 import { Repository } from './Repository';
 import { Transaction } from './Transaction';

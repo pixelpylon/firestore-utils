@@ -1,5 +1,5 @@
 const {v4: uuid} = require('uuid')
-const {getLimitAndOffset} = require('back-utils')
+const {getLimitAndOffset} = require('@exp1/back-utils')
 const {Repository} = require('./Repository')
 const {Transaction} = require('./Transaction')
 const difference = require('lodash/difference')
