@@ -41,19 +41,23 @@ class Repository {
     await ref.delete()
   }
 
+  get (id) {
+    return this.ref(id).get()
+  }
+
   async one (id) {
-    const result = await this.ref(id).get()
+    const result = await this.get(id)
     return DocumentAccessor.one(result)
   }
 
   async list (getQuery) {
-    const query = getQuery(this.collectionRef)
+    const query = await getQuery(this.collectionRef)
     const result = await query.get()
     return DocumentAccessor.list(result)
   }
 
   async first (getQuery) {
-    const query = getQuery(this.collectionRef)
+    const query = await getQuery(this.collectionRef)
     const limitedQuery = query.limit(1)
     const result = await limitedQuery.get()
     return DocumentAccessor.first(result)

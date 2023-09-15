@@ -10,6 +10,7 @@ export declare class Transaction<T> {
   add(data: T): Promise<firestore.DocumentReference<T>>
   delete(id: string): Promise<void>
 
+  get(id: string): Promise<firestore.DocumentSnapshot<T>>
   one(id: string): Promise<T | null>
   list(getQuery: (collectionRef: firestore.CollectionReference<T>) => firestore.Query<T>): Promise<T[]>
   first(getQuery: (collectionRef: firestore.CollectionReference<T>) => firestore.Query<T>): Promise<T | null>

@@ -40,19 +40,23 @@ class Transaction {
     return ref
   }
 
+  get (id) {
+    return this.tx.get(this.ref(id))
+  }
+
   async one (id) {
-    const result = await this.tx.get(this.ref(id))
+    const result = await this.get(id)
     return DocumentAccessor.one(result)
   }
 
   async list (getQuery) {
-    const query = getQuery(this.collectionRef)
+    const query = await getQuery(this.collectionRef)
     const result = await this.tx.get(query)
     return DocumentAccessor.list(result)
   }
 
   async first (getQuery) {
-    const query = getQuery(this.collectionRef)
+    const query = await getQuery(this.collectionRef)
     const limitedQuery = query.limit(1)
     const result = await this.tx.get(limitedQuery)
     return DocumentAccessor.first(result)

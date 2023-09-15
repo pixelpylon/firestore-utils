@@ -1,5 +1,4 @@
 const {v4: uuid} = require('uuid')
-const {getLimitAndOffset} = require('@exp1/back-utils')
 const {Repository} = require('./Repository')
 const {Transaction} = require('./Transaction')
 const difference = require('lodash/difference')
@@ -75,6 +74,41 @@ const applyFiltersAndOrdering = (query, filters, ordering) => {
   return mutableQuery
 }
 
+const queryList = async (context, params) => {
+  const {filters, ordering, cursor, limit} = params
+  console.log(params)
+
+  const list = await context.list(async (collectionRef) => {
+    let query = applyFiltersAndOrdering(collectionRef, filters, ordering)
+
+    if (limit) {
+      query = query.limit(limit + 1)
+    }
+
+    if (cursor) {
+      const cursorSnapshot = await context.get(cursor)
+      query = query.startAt(cursorSnapshot)
+    }
+
+    return query
+  })
+
+  if (!limit) {
+    return {list}
+  }
+
+  if (list.length < limit + 1) {
+    return {
+      list: list.slice(0, -1),
+    }
+  }
+
+  return {
+    list: list.slice(0, -1),
+    nextCursor: list[list.length - 1].id,
+  }
+} 
+
 class EntityTransactionManager {
   constructor (tx, db, collectionName) {
     this.tx = tx
@@ -123,21 +157,7 @@ class EntityTransactionManager {
   }
 
   async list (params) {
-    const {filters, ordering} = params
-    const {offset, limit} = getLimitAndOffset(params)
-    return await this.transaction.list((collectionRef) => {
-      let query = collectionRef
-
-      if (limit) {
-        query = query.limit(limit)
-      }
-
-      if (offset) {
-        query = query.offset(offset)
-      }
-
-      return applyFiltersAndOrdering(query, filters, ordering)
-    })
+    return queryList(this.transaction, params)
   }
 
   first ({filters, ordering}) {
@@ -202,21 +222,7 @@ class EntityManager {
   }
 
   async list (params) {
-    const {filters, ordering} = params
-    const {offset, limit} = getLimitAndOffset(params)
-    return await this.repository.list((collectionRef) => {
-      let query = collectionRef
-
-      if (limit) {
-        query = query.limit(limit)
-      }
-
-      if (offset) {
-        query = query.offset(offset)
-      }
-
-      return applyFiltersAndOrdering(query, filters, ordering)
-    })
+    return queryList(this.repository, params)
   }
 
   tx (tx) {
