@@ -1,4 +1,4 @@
-import {DbData, EntityFilters, EntityListParams, EntityListResponse, EntityOrdering} from '@exp1/common-utils'
+import {DbData, Filters, ListParams, EntityListResponse, Ordering} from '@exp1/common-utils'
 import { firestore } from 'firebase-admin';
 import { Repository } from './Repository';
 import { Transaction } from './Transaction';
@@ -23,9 +23,9 @@ export class EntityTransactionManager<Entity> {
 
   item(id: string): Promise<DbData<Entity>>
 
-  list(params: EntityListParams<Entity>): Promise<EntityListResponse<Entity>>
+  list(params: ListParams): Promise<EntityListResponse<Entity>>
 
-  first(params: {filters?: EntityFilters<Entity>, ordering?: EntityOrdering<Entity>}): Promise<DbData<Entity> | null>
+  first(params: {filters?: Filters, ordering?: Ordering}): Promise<DbData<Entity> | null>
 
   remove(id: string): Promise<void>
 }
@@ -44,9 +44,9 @@ export class EntityManager<Entity> {
 
   item(id: string): Promise<DbData<Entity>>
 
-  first(params: {filters?: EntityFilters<Entity>, ordering?: EntityOrdering<Entity>}): Promise<DbData<Entity>>
+  first(params: {filters?: Filters, ordering?: Ordering}): Promise<DbData<Entity>>
 
-  list(params: EntityListParams<Entity>): Promise<EntityListResponse<Entity>>
+  list(params: ListParams): Promise<EntityListResponse<Entity>>
 
   tx(tx: firestore.Transaction): EntityTransactionManager<Entity>
 }
