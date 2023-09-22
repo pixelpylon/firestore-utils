@@ -2,7 +2,7 @@ const {v4: uuid} = require('uuid')
 const {Repository} = require('./Repository')
 const {Transaction} = require('./Transaction')
 
-const applyFiltersAndOrdering = (query, filters, ordering) => {
+const applyFiltersAndOrdering = (query, filters = [], ordering = []) => {
   let mutableQuery = query
 
   const normalizedOrdering = ordering.map((item) => {

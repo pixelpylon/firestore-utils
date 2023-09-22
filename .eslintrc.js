@@ -1,15 +1,14 @@
 module.exports = {
   env: {
-    commonjs: true,
-    es2021: true,
+    es6: true,
+    node: true,
   },
-  extends: 'standard-with-typescript',
+  extends: ['standard-with-typescript', 'prettier'],
   overrides: [],
   parserOptions: {
     ecmaVersion: 'latest',
   },
   rules: {
-    'comma-dangle': ['error', 'always-multiline'],
-    'object-curly-spacing': ['error', 'never'],
+    'require-jsdoc': 'off',
   },
 }
