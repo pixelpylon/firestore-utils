@@ -1,10 +1,13 @@
 {
   "name": "@exp1/firestore-utils",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Firestore Utils",
   "main": "dist/sources/index.js",
   "typings": "dist/declares/index.d.ts",
   "scripts": {
+    "test": "mocha 'test/**/*.test.js'",
+    "test:dev": "mocha 'test/**/*.test.js' --watch",
+    "prepare": "husky install",
     "artifactregistry-login": "npx google-artifactregistry-auth"
   },
   "engines": {
@@ -29,6 +32,15 @@
     "eslint-plugin-n": "^15.5.1",
     "eslint-plugin-promise": "^6.1.1",
     "firebase-admin": "^11.10.1",
-    "typescript": "^4.9.3"
+    "typescript": "^4.9.3",
+    "@trivago/prettier-plugin-sort-imports": "^4.0.0",
+    "chai": "^4.3.6",
+    "husky": "^8.0.0",
+    "lint-staged": "^13.1.0",
+    "mocha": "^10.0.0",
+    "prettier": "2.8.0"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
   }
 }
