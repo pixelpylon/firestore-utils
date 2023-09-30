@@ -26,6 +26,8 @@ const applyFiltersAndOrdering = (query, filters = [], ordering = []) => {
       typeof valueOrValueObject === 'boolean'
     ) {
       mutableQuery = mutableQuery.where(field, '==', valueOrValueObject)
+    } else if (Array.isArray(valueOrValueObject)) {
+      mutableQuery = mutableQuery.where(field, 'in', valueOrValueObject)
     } else if (typeof valueOrValueObject === 'object') {
       const {value, op} = valueOrValueObject
       mutableQuery = mutableQuery.where(field, op, value)
@@ -43,7 +45,6 @@ const applyFiltersAndOrdering = (query, filters = [], ordering = []) => {
 
 const queryList = async (context, params) => {
   const {filters, ordering, cursor, limit} = params
-  console.log(params)
 
   const list = await context.list(async (collectionRef) => {
     let query = applyFiltersAndOrdering(collectionRef, filters, ordering)
@@ -123,8 +124,13 @@ class EntityTransactionManager {
     return item
   }
 
-  async list(params) {
-    return queryList(this.transaction, params)
+  async list({filters, ordering, limit}) {
+    const {list} = await queryList(this.transaction, {filters, ordering, limit})
+    return list
+  }
+
+  async paginatedList({filters, ordering, cursor, limit}) {
+    return queryList(this.transaction, {filters, ordering, cursor, limit})
   }
 
   first({filters, ordering}) {
@@ -188,8 +194,13 @@ class EntityManager {
     })
   }
 
-  async list(params) {
-    return queryList(this.repository, params)
+  async list({filters, ordering, limit}) {
+    const {list} = await queryList(this.repository, {filters, ordering, limit})
+    return list
+  }
+
+  async paginatedList({filters, ordering, cursor, limit}) {
+    return queryList(this.repository, {filters, ordering, cursor, limit})
   }
 
   tx(tx) {

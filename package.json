@@ -1,6 +1,6 @@
 {
   "name": "@exp1/firestore-utils",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Firestore Utils",
   "main": "dist/sources/index.js",
   "typings": "dist/declares/index.d.ts",
@@ -19,26 +19,26 @@
     "firebase-admin": "^11.10.1"
   },
   "dependencies": {
-    "@exp1/back-utils": "^0.0.21",
-    "@exp1/common-utils": "^0.0.76",
+    "@exp1/back-utils": "^0.0.23",
+    "@exp1/common-utils": "^0.0.79",
     "lodash": "^4.17.21",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.0.0",
     "@typescript-eslint/eslint-plugin": "^5.44.0",
+    "chai": "^4.3.6",
     "eslint": "^8.28.0",
     "eslint-config-standard-with-typescript": "^23.0.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-n": "^15.5.1",
     "eslint-plugin-promise": "^6.1.1",
     "firebase-admin": "^11.10.1",
-    "typescript": "^4.9.3",
-    "@trivago/prettier-plugin-sort-imports": "^4.0.0",
-    "chai": "^4.3.6",
     "husky": "^8.0.0",
     "lint-staged": "^13.1.0",
     "mocha": "^10.0.0",
-    "prettier": "2.8.0"
+    "prettier": "2.8.0",
+    "typescript": "^4.9.3"
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"

@@ -1,17 +1,21 @@
-import {DbData, Filters, ListParams, EntityListResponse, Ordering} from '@exp1/common-utils'
-import { firestore } from 'firebase-admin';
-import { Repository } from './Repository';
-import { Transaction } from './Transaction';
+import {
+  DbData,
+  EntityListResponse,
+  EntityPaginatedListResponse,
+  Filters,
+  ListParams,
+  Ordering,
+  PaginatedListParams,
+} from '@exp1/common-utils'
+import {firestore} from 'firebase-admin'
+import {Repository} from './Repository'
+import {Transaction} from './Transaction'
 
 export class EntityTransactionManager<Entity> {
   public readonly transaction: Transaction<DbData<Entity>>
   public readonly collectionName: string
 
-  constructor(
-    tx: firestore.Transaction,
-    db: firestore.Firestore,
-    collectionName: string
-  )
+  constructor(tx: firestore.Transaction, db: firestore.Firestore, collectionName: string)
 
   ref(id?: string): firestore.DocumentReference<DbData<Entity>>
 
@@ -25,7 +29,9 @@ export class EntityTransactionManager<Entity> {
 
   list(params: ListParams): Promise<EntityListResponse<Entity>>
 
-  first(params: {filters?: Filters, ordering?: Ordering}): Promise<DbData<Entity> | null>
+  paginatedList(params: PaginatedListParams): Promise<EntityPaginatedListResponse<Entity>>
+
+  first(params: {filters?: Filters; ordering?: Ordering}): Promise<DbData<Entity> | null>
 
   remove(id: string): Promise<void>
 }
@@ -44,9 +50,11 @@ export class EntityManager<Entity> {
 
   item(id: string): Promise<DbData<Entity>>
 
-  first(params: {filters?: Filters, ordering?: Ordering}): Promise<DbData<Entity>>
+  first(params: {filters?: Filters; ordering?: Ordering}): Promise<DbData<Entity>>
 
   list(params: ListParams): Promise<EntityListResponse<Entity>>
+
+  paginatedList(params: PaginatedListParams): Promise<EntityPaginatedListResponse<Entity>>
 
   tx(tx: firestore.Transaction): EntityTransactionManager<Entity>
 }
