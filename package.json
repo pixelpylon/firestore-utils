@@ -1,6 +1,6 @@
 {
   "name": "@exp1/firestore-utils",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "Firestore Utils",
   "main": "dist/sources/index.js",
   "typings": "dist/declares/index.d.ts",
@@ -19,8 +19,8 @@
     "firebase-admin": "^11.10.1"
   },
   "dependencies": {
-    "@exp1/back-utils": "^0.0.23",
-    "@exp1/common-utils": "^0.0.79",
+    "@exp1/back-utils": "^0.0.24",
+    "@exp1/common-utils": "^0.0.80",
     "lodash": "^4.17.21",
     "uuid": "^9.0.0"
   },

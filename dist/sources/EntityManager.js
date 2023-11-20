@@ -188,6 +188,10 @@ class EntityManager {
     return item
   }
 
+  async one(id) {
+    return this.repository.one(id)
+  }
+
   async first({filters, ordering}) {
     return this.repository.first((collectionRef) => {
       return applyFiltersAndOrdering(collectionRef, filters, ordering)
