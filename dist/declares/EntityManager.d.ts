@@ -50,6 +50,8 @@ export class EntityManager<Entity> {
 
   item(id: string): Promise<DbData<Entity>>
 
+  one(id: string): Promise<DbData<Entity>>
+
   first(params: {filters?: Filters; ordering?: Ordering}): Promise<DbData<Entity>>
 
   list(params: ListParams): Promise<EntityListResponse<Entity>>

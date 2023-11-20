@@ -1,6 +1,6 @@
 {
   "name": "@exp1/firestore-utils",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "Firestore Utils",
   "main": "dist/sources/index.js",
   "typings": "dist/declares/index.d.ts",
