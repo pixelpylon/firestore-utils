@@ -23,7 +23,7 @@ export class EntityTransactionManager<Entity> {
 
   update(id: string, entity: Partial<Entity>): Promise<firestore.DocumentReference<DbData<Entity>>>
 
-  one(id: string): Promise<DbData<Entity>>
+  one(id: string): Promise<DbData<Entity> | null>
 
   item(id: string): Promise<DbData<Entity>>
 
@@ -50,7 +50,7 @@ export class EntityManager<Entity> {
 
   item(id: string): Promise<DbData<Entity>>
 
-  one(id: string): Promise<DbData<Entity>>
+  one(id: string): Promise<DbData<Entity> | null>
 
   first(params: {filters?: Filters; ordering?: Ordering}): Promise<DbData<Entity>>
 
