@@ -69,12 +69,12 @@ const queryList = async (context, params) => {
 
   if (list.length < limit + 1) {
     return {
-      list: list.slice(0, -1),
+      list: list.slice(0, limit),
     }
   }
 
   return {
-    list: list.slice(0, -1),
+    list: list.slice(0, limit),
     nextCursor: list[list.length - 1].id,
   }
 }
