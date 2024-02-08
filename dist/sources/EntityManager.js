@@ -26,12 +26,6 @@ const applyFiltersAndOrdering = (query, filters = [], ordering = []) => {
       mutableQuery = mutableQuery.where(field, 'in', valueOrValueObject)
     } else if (typeof valueOrValueObject === 'object') {
       const {value, op} = valueOrValueObject
-      const type = typeof value
-
-      if (!['string', 'number', 'boolean'].includes(type)) {
-        throw new Error(`Value type is not primitive, value '${value}', type '${type}'`)
-      }
-
       mutableQuery = mutableQuery.where(field, op, value)
     } else {
       throw new Error(`Unexpected type of value '${JSON.stringify(valueOrValueObject)}'`)
