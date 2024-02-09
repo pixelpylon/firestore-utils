@@ -19,7 +19,9 @@ const applyFiltersAndOrdering = (query, filters = [], ordering = []) => {
     }
   })
 
-  for (const {field, value: valueOrValueObject} of filters) {
+  const significantFilters = filters.filter(Boolean)
+
+  for (const {field, value: valueOrValueObject} of significantFilters) {
     if (['string', 'number', 'boolean'].includes(typeof valueOrValueObject)) {
       mutableQuery = mutableQuery.where(field, '==', valueOrValueObject)
     } else if (Array.isArray(valueOrValueObject)) {
