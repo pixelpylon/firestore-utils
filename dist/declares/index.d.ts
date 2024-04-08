@@ -1,3 +1,5 @@
-export {Repository} from "./Repository"
-export {Transaction} from "./Transaction"
-export {EntityManager, EntityTransactionManager} from "./EntityManager"
+export {Repository} from './Repository.d'
+export {Transaction} from './Transaction.d'
+export {EntityManager, EntityTransactionManager} from './EntityManager.d'
+export {FiltersManager} from './FiltersManager.d'
+export {chunkFilter} from './utils.d'

@@ -1,0 +1,50 @@
+{
+  "overrides": [
+    {
+      "files": ["**/*.js"],
+      "env": {
+        "es6": true,
+        "node": true,
+        "mocha": true
+      },
+      "parserOptions": {
+        "ecmaVersion": 9
+      },
+      "plugins": ["promise", "require-path-exists"],
+      "extends": ["eslint:recommended", "google", "plugin:require-path-exists/recommended", "prettier"],
+      "rules": {
+        "require-jsdoc": "off"
+      }
+    },
+    {
+      "files": ["**/*.ts"],
+      "env": {
+        "es6": true,
+        "node": true
+      },
+      "extends": [
+        "eslint:recommended",
+        "plugin:import/errors",
+        "plugin:import/warnings",
+        "plugin:import/typescript",
+        "google",
+        "plugin:@typescript-eslint/recommended",
+        "prettier"
+      ],
+      "parser": "@typescript-eslint/parser",
+      "parserOptions": {
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+      },
+      "plugins": ["@typescript-eslint", "import"],
+      "rules": {
+        "require-jsdoc": "off"
+      },
+      "settings": {
+        "import/resolver": {
+          "typescript": {}
+        }
+      }
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "name": "@exp1/firestore-utils",
-  "version": "0.0.20",
+  "version": "0.0.21",
   "description": "Firestore Utils",
   "main": "dist/sources/index.js",
   "typings": "dist/declares/index.d.ts",
@@ -19,20 +19,23 @@
     "firebase-admin": "^11.10.1"
   },
   "dependencies": {
-    "@exp1/back-utils": "^0.0.35",
-    "@exp1/common-utils": "^0.0.84",
+    "@exp1/back-utils": "^0.0.39",
+    "@exp1/common-utils": "^0.0.86",
     "lodash": "^4.17.21",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.44.0",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
     "chai": "^4.3.6",
     "eslint": "^8.28.0",
-    "eslint-config-standard-with-typescript": "^23.0.0",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-n": "^15.5.1",
-    "eslint-plugin-promise": "^6.1.1",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-require-path-exists": "^1.1.9",
     "firebase-admin": "^11.10.1",
     "husky": "^8.0.0",
     "lint-staged": "^13.1.0",
