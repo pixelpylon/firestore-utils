@@ -1,6 +1,6 @@
 {
   "name": "@exp1/firestore-utils",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "description": "Firestore Utils",
   "main": "dist/sources/index.js",
   "typings": "dist/declares/index.d.ts",
@@ -16,7 +16,7 @@
   "author": "Ivan Kosolapov <polzuka@gmail.com>",
   "license": "ISC",
   "peerDependencies": {
-    "firebase-admin": "^11.10.1"
+    "firebase-admin": "^12.0.0"
   },
   "dependencies": {
     "@exp1/back-utils": "^0.0.39",
@@ -36,7 +36,7 @@
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-require-path-exists": "^1.1.9",
-    "firebase-admin": "^11.10.1",
+    "firebase-admin": "^12.0.0",
     "husky": "^8.0.0",
     "lint-staged": "^13.1.0",
     "mocha": "^10.0.0",
