@@ -1,6 +1,6 @@
 {
   "name": "@exp1/firestore-utils",
-  "version": "0.0.23",
+  "version": "0.0.24",
   "description": "Firestore Utils",
   "main": "dist/sources/index.js",
   "typings": "dist/declares/index.d.ts",
@@ -8,7 +8,8 @@
     "test": "mocha 'test/**/*.test.js'",
     "test:dev": "mocha 'test/**/*.test.js' --watch",
     "prepare": "husky install",
-    "artifactregistry-login": "npx google-artifactregistry-auth"
+    "artifactregistry-login": "npx google-artifactregistry-auth",
+    "publish-package": "bash -c 'publish_pkg () { npm run artifactregistry-login && npm publish && git add -A && git ci -m \"${0:=$(npm pkg get version)}\" && git tag $(npm pkg get version) && git push && git push --tags; }; publish_pkg'"
   },
   "engines": {
     "node": ">=12"
@@ -19,7 +20,7 @@
     "firebase-admin": "^12.0.0"
   },
   "dependencies": {
-    "@exp1/back-utils": "^0.0.40",
+    "@exp1/back-utils": "^0.0.41",
     "@exp1/common-utils": "^0.0.87",
     "lodash": "^4.17.21",
     "uuid": "^9.0.0"
