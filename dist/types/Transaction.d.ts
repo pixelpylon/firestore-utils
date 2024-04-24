@@ -1,8 +1,8 @@
 import {firestore} from 'firebase-admin'
 
 export declare class Transaction<T> {
-  constructor (tx: firestore.Transaction, db: firestore.Firestore, collectionName: string)
-  ref (id?: string): firestore.DocumentReference<T>
+  constructor(tx: firestore.Transaction, db: firestore.Firestore, collectionName: string)
+  ref(id?: string): firestore.DocumentReference<T>
 
   set(id: string, data: T): Promise<firestore.DocumentReference<T>>
   create(id: string, data: T): Promise<firestore.DocumentReference<T>>

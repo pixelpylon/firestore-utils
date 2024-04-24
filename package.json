@@ -1,10 +1,11 @@
 {
   "name": "@exp1/firestore-utils",
-  "version": "0.0.24",
+  "version": "1.0.0",
   "description": "Firestore Utils",
-  "main": "dist/sources/index.js",
-  "typings": "dist/declares/index.d.ts",
+  "main": "dist/src/index.js",
+  "types": "dist/types/index.d.ts",
   "scripts": {
+    "lint": "eslint --fix .",
     "test": "mocha 'test/**/*.test.js'",
     "test:dev": "mocha 'test/**/*.test.js' --watch",
     "prepare": "husky install",
@@ -12,37 +13,38 @@
     "publish-package": "bash -c 'publish_pkg () { npm run artifactregistry-login && npm publish && git add -A && git ci -m \"${0:=$(npm pkg get version)}\" && git tag $(npm pkg get version) && git push && git push --tags; }; publish_pkg'"
   },
   "engines": {
-    "node": ">=12"
+    "node": ">=20"
   },
   "author": "Ivan Kosolapov <polzuka@gmail.com>",
   "license": "ISC",
   "peerDependencies": {
-    "firebase-admin": "^12.0.0"
-  },
-  "dependencies": {
-    "@exp1/back-utils": "^0.0.41",
-    "@exp1/common-utils": "^0.0.87",
-    "lodash": "^4.17.21",
-    "uuid": "^9.0.0"
+    "firebase-admin": ">=12.0.0",
+    "@exp1/back-utils": ">=1.0.0",
+    "@exp1/common-utils": ">=1.0.0",
+    "lodash": ">=4.17.21",
+    "uuid": ">=9.0.0"
   },
   "devDependencies": {
-    "@trivago/prettier-plugin-sort-imports": "^4.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.12.0",
-    "@typescript-eslint/parser": "^5.12.0",
-    "chai": "^4.3.6",
-    "eslint": "^8.28.0",
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "@typescript-eslint/eslint-plugin": "^7.7.0",
+    "@typescript-eslint/parser": "^7.7.0",
+    "chai": "^5.1.0",
+    "eslint": "^8.56.0",
     "eslint-config-google": "^0.14.0",
-    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-typescript": "^3.6.1",
-    "eslint-plugin-import": "^2.25.4",
-    "eslint-plugin-promise": "^4.0.1",
-    "eslint-plugin-require-path-exists": "^1.1.9",
-    "firebase-admin": "^12.0.0",
-    "husky": "^8.0.0",
-    "lint-staged": "^13.1.0",
-    "mocha": "^10.0.0",
-    "prettier": "2.8.0",
-    "typescript": "^4.9.3"
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "firebase-admin": "^12.1.0",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "mocha": "^10.4.0",
+    "prettier": "3.2.5",
+    "typescript": "^5.4.5",
+    "lodash": "^4.17.21",
+    "uuid": "^9.0.1",
+    "@exp1/back-utils": "^1.0.0",
+    "@exp1/common-utils": "^1.0.0"
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"

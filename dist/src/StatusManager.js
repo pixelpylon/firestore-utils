@@ -8,37 +8,35 @@ const PROCESSING_STATUSES = {
 }
 
 class StatusManager {
-  constructor (field) {
+  constructor(field) {
     this.field = field
   }
 
-  markAsDone (documentRef, additionalData = {}) {
+  markAsDone(documentRef, additionalData = {}) {
     const updateData = {
       [this.field]: getStatusObject(PROCESSING_STATUSES.DONE),
       ...additionalData,
     }
 
-    return documentRef
-      .set(updateData, { merge: true })
+    return documentRef.set(updateData, {merge: true})
   }
 
-  markAsFailed (documentRef, error, additionalData = {}) {
+  markAsFailed(documentRef, error, additionalData = {}) {
     const updateData = {
       [this.field]: getStatusObject(PROCESSING_STATUSES.ERROR, error),
       ...additionalData,
     }
 
-    return documentRef
-      .set(updateData, { merge: true })
+    return documentRef.set(updateData, {merge: true})
   }
 
-  async findUnprocessed (collectionRef) {
+  async findUnprocessed(collectionRef) {
     const result = await collectionRef
       .where(`${this.field}.status`, '==', PROCESSING_STATUSES.PENDING)
       .orderBy(`${this.field}.timestamp`, 'asc')
       .get()
     return DocumentAccessor.list(result)
-  };
+  }
 }
 
 StatusManager.PROCESSING_STATUSES = PROCESSING_STATUSES

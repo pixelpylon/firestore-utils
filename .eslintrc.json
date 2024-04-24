@@ -8,11 +8,13 @@
         "mocha": true
       },
       "parserOptions": {
-        "ecmaVersion": 9
+        "ecmaVersion": "latest",
+        "sourceType": "module"
       },
-      "plugins": ["promise", "require-path-exists"],
-      "extends": ["eslint:recommended", "google", "plugin:require-path-exists/recommended", "prettier"],
+      "plugins": ["promise", "import"],
+      "extends": ["eslint:recommended", "plugin:import/errors", "plugin:import/warnings", "google", "prettier"],
       "rules": {
+        "import/no-unresolved": [2, {"commonjs": true}],
         "require-jsdoc": "off"
       }
     },
@@ -33,7 +35,7 @@
       ],
       "parser": "@typescript-eslint/parser",
       "parserOptions": {
-        "ecmaVersion": 2018,
+        "ecmaVersion": "latest",
         "sourceType": "module"
       },
       "plugins": ["@typescript-eslint", "import"],
